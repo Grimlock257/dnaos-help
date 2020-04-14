@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Java | Comparison to Python</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <style>
+        .black {
+            border : 1px solid #000;
+        }
+        hr {
+            border-color: #BBB;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-default navbar-static-top" id="go-to-top">
+    <div class="container">
+        <!-- Logo -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index" class="navbar-brand">Java</a>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="collapse navbar-collapse" id="mainNavBar">
+            <!-- Left Side -->
+            <ul class="nav navbar-nav">
+                <li><a href="#layout">Layout</a></li>
+                <li><a href="#access">Access Modifiers</a></li>
+                <li><a href="#variables">Variables</a></li>
+                <li><a href="#constants">Constants</a></li>
+                <li><a href="#objects">Objects</a></li>
+                <li><a href="#static">Static</a></li>
+                <li><a href="#if">If statements</a></li>
+                <li><a href="#for">For loops</a></li>
+                <li><a href="#while">While loops</a></li>
+                <li><a href="#forvswhile">For vs While loops</a></li>
+                <li><a href="#functions">Functions</a></li>
+            </ul>
+
+            <!-- Right Side -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="surgery">Surgeries</a></li>
+                <li><a href="comparison">Expanded</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h1 class="text-center">Python vs Java</h1>
+    <p class="bg-danger text-center"><b>The first conceptual demo of code for each section is done in Python (unless specified).</b></p>
+    <hr />
+    <h1 class="text-center">General comparison of techniques</h1>
+    <p class="text-center bg-warning"><code>System.out.println()</code> is essentially just a <code>print</code> statement in Python.</p>
+    <div class="well">
+        <div id="layout">
+            <h2>Layout</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">myNumber = 5
+if myNumber > 10:
+    print("Greater than 10")
+else:
+    print("Less than 10")</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int myNumber = 5;
+if (myNumber < 10) {
+    System.out.println("Greater than 10");
+} else {
+    System.out.println("Less than 10");
+}</pre>
+                    <p>The following however would also work perfectly in Java, but is less readable (and you <b>may</b> lose
+                       marks on
+                       code for poor/inconsistent layout):</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int myNumber = 5;
+if (myNumber < 10) {System.out.println("Greater than 10")   ;
+} else { System.out.println("Less than 10");}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="access">
+            <h2>Access Modifiers</h2>
+            <div class="row row-eq-height">
+                <div class="col-md-12">
+                    <h2><code>public</code></h2>
+                    The public keyword means the variable will be accessible from anywhere else in the program.
+                    <h2><code>private</code></h2>
+                    The private keyword means the variable will only beaccessible from the current class.
+                    <h2><code>protected</code></h2>
+                    The protected keyword means the variable will be accessible from the current package and anything within it (including subclasses - i.e classes that extend the class the variable is in - more later).
+                    <h2>Specifiying no access modifier</h2>
+                    Failing to specify a modifier means the variable can be access from the current class and package,
+                    <h2>As a table:</h2>
+                    <i>As the table goes down, less and less places can access the variable</i>
+                    <table class="table">
+                        <tr>
+                            <th>Access Modifier</th>
+                            <th>Same Class</th>
+                            <th>Same Package</th>
+                            <th>Subclass</th>
+                            <th>Other Packages</th>
+                        </tr>
+                        <tr>
+                            <td>Public</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                        </tr>
+                        <tr>
+                            <td>Protected</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>N</td>
+                        </tr>
+                        <tr>
+                            <td>None</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>N</td>
+                        </tr>
+                        <tr>
+                            <td>Private</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>N</td>
+                            <td>N</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="variables">
+            <h2>Variables</h2>
+            <div class="row row-eq-height">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">myInt = 5
+myFloat = 5.0
+myString = "Hello"</pre>
+                    <br /><br />
+                    <p>Generally:</p>
+                    <code>&lt;var_name&gt; = &lt;value&gt;</code>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int myInt = 5;
+float myFloat = 5.0;
+String myString = "Hello";</pre>
+                    <br /><br />
+                    <p>Generally:</p>
+                    <code>[access_modifier] &lt;data_type&gt; &lt;var_name&gt; = &lt;value&gt;;</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="constants">
+            <h2>Constants</h2>
+            <div class="row row-eq-height">
+                <div class="col-md-12">
+                    <h2><code>static final</code> keywords</h2>
+                    To tell the compiler you don't want the variable to change, you put <code>static final</code> before the data type of the constant:
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">private static final int myInt = 5;
+private static final float myFloat = 5.0;
+private static final String myString = "Hello";</pre>
+                    <code>final</code> means that the variable declaration is final... i.e it can't be changed. Static is explained <a href="comparison.html#static">here</a>.
+                    <p>Generally:</p>
+                    <code>&lt;access_modifier&gt; static final &lt;data_type&gt; &lt;const_name&gt; = &lt;value&gt;;</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="objects">
+            <h2>Objects</h2>
+            <div class="row row-eq-height">
+                <div class="col-md-12">
+                    <h2>A 'Dog' Class</h2>
+                    Here is a simple dog class, which we will be the example for the rest of this section for explanations:
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">public class Dog {
+    private String name;
+    private int age;
+    
+    // Constructor, explained later in this section
+    public Dog(String dogName, int dogAge) {
+        name = dogName;
+        age = dogAge;
+    }
+    
+    // Getter, returns the name of the current dog object
+    public String getName() {
+        return name;
+    }
+    
+    // Setter, sets the name of the current dog object
+    public void setName(String newName) {
+        name = newName;
+    }
+    
+    // Getter, returns age of the current dog object
+    public int getAge() {
+        return age;
+    }
+    
+    // Setter, sets the age of the current dog object
+    public void setAge(int newAge) {
+        age = newAge;
+    }
+}
+                    </pre>
+                    <hr />
+                    <h2>Constructor</h2>
+                    The constructor is a method (function) which is automatically called when an object is instantiated (created, explained at the end of this section).<br />
+                    <br /><br />
+                    Multiple constructors are allowed so long as have different parameters (types, amount or order of data types).
+                    <hr />
+                    <h2>Member Variables</h2>
+                    These are simply variable which relate and belong to a object. These are typically private as to prevent outside places modifiying their value.
+                    <hr />
+                    <h2>Setters/Getters</h2>
+                    Setters and getters are a way for us to retrieve and manipulate our member variables.
+                    <hr />
+                    <h2>Methods</h2>
+                    Methods are fuctions that belong to a class, as mentioned previously, Java forces you to use classes for everything, so all 'functions' are actually methods.
+                    <hr />
+                    <h1>Creating an Instance of a Object</h1>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">Dog myDog = new Dog("Dot", 3);</pre>
+                    <hr />
+                    <h2>Access Object Methods</h2>
+                    To access methods within our object we use dot notation, as shown:
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">System.out.println(myDog.getName());</pre>
+                    This line would print out the dog name onto our screen (as getName() returns a String, the name of the dog).
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="static">
+            <h2>Static</h2>
+            <p>References the 'Dog' class example from the previous topic (<a href="comparison.html#objects">here</a>).<br /><br />
+            The <code>static</code> keyword allows us to access variable within a class, without creating an object of that class. This is why the <code>main</code> method is a static method, as Java needs a way to call the method, as no objects have been created yet.<br /><br />
+            <code>static</code> also allows us to have variables shared across all instances of a particular class.</p>
+            <div class="row row-eq-height">
+                <div class="col-md-12">
+                    <h2>Adding a <code>static</code> member variable to our previous 'Dog' class</h2>
+                    New lines have been marked with a comment saying 'NEW':
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">public class Dog {
+    public static int numberOfDogs = 0; // NEW
+    
+    private String name;
+    private int age;
+    
+    // Constructor, explained later in this section
+    public Dog(String dogName, int dogAge) {
+        name = dogName;
+        age = dogAge;
+        
+        // Increment the numberOfDogs variable
+        numberOfDogs++; // NEW
+    }
+    
+    // Setts and Getters here...
+}
+                    </pre>
+                    All dog objects will have access to the <b>same</b> variable, i.e they all access the <b>exact same</b> piece of memory for that variable.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="if">
+            <h2>If Statements</h2>
+            <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">if &lt;condition&gt;:
+    // do this
+else if &lt;another_condition&gt;:
+    // do this instead
+else:
+    // do this if others all false</pre>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">myNumber = 5
+if myNumber > 10:
+    print("Greater than 10")
+else:
+    print("Less than 10")</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int myNumber = 5;
+if (myNumber < 10) {
+    System.out.println("Greater than 10");
+} else {
+    System.out.println("Less than 10");
+}
+</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="while">
+            <h2>While loops</h2>
+            <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">while &lt;condition&gt;
+    // do this
+    // can break out of while loop using 'break' (for both Python and Java)
+</pre>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">counter = 0
+while counter < 5:
+    print(counter)
+    counter += 1</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int counter = 0;
+while (counter < 5) {
+    System.out.println(counter);
+    counter++;
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="for">
+            <h2>For loops</h2>
+            <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">for &lt;temp_variable&gt; in range(&lt;start&gt;, &lt;end&gt;, &lt;step&gt;):
+    // do this
+</pre>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">for i in range(1, 11, 2):
+    print(i)</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">for (&lt;datatype&gt; &lt;var&gt; = &lt;start&gt;; &lt;condition&gt;; &lt;step&gt;)</pre>
+                    <p><i>Note: &lt;condition&gt; and &lt;step&gt; are given in terms of &lt;var&gt;, see below example.</i></p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">for (int i = 1; i < 11; i += 2) {
+    System.out.println(i);
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="well">
+        <div id="forvswhile">
+            <h2>For vs While loops (Comparison)</h2>
+            These two code snippits achieve the same thing.
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>While loops</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int counter = 0;
+while (counter < 5) {
+    System.out.println(counter);
+    counter++;
+}</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>For loops</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="well">
+        <div id="functions">
+            <h2>Functions/Methods</h2>
+            <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">def &lt;function_name&gt;(&lt;any_arguments_comma_separated&gt;) :
+    // do this
+    // maybe return &lt;value&gt; (not neccesssary - function may just 'do' something i.e print something)
+</pre>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <p>Example of function that has return:</p>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">def add(num1, num2):
+    result = num1 + num2
+    return result</pre>
+                    <p>Example of function that has return:</p>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">def sayName(name):
+    print(name)</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <p>General syntax:</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">&lt;access_modifier&gt; &lt;data_type&gt; &lt;funct_name&gt;(&lt;data_type&gt; &lt;name_within_funct&gt;, [more]) {
+    // do this
+    // maybe return &lt;value&gt;;
+}</pre>
+                    <p>Example of function that has return:</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">private float add(float num1, float num2) {
+    float result = num1 + num2;
+    return result;
+}</pre>
+                    <p>Example of function that no return:</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">private void sayName(String name) {
+    System.out.println(name);
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

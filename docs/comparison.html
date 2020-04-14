@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Java | Comparison to Python</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <style>
+        .black {
+            border : 1px solid #000;
+        }
+        hr {
+            border-color: #BBB;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-default navbar-static-top" id="go-to-top">
+    <div class="container">
+        <!-- Logo -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index" class="navbar-brand">Java</a>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="collapse navbar-collapse" id="mainNavBar">
+            <!-- Left Side -->
+            <ul class="nav navbar-nav">
+                <li><a href="#layout">Layout</a></li>
+                <li><a href="#access">Access Modifiers</a></li>
+                <li><a href="#variables">Variables</a></li>
+                <li><a href="#constants">Constants</a></li>
+                <li><a href="#objects">Objects</a></li>
+                <li><a href="#static">Static</a></li>
+                <li><a href="#if">If statements</a></li>
+                <li><a href="#for">For loops</a></li>
+                <li><a href="#while">While loops</a></li>
+                <li><a href="#forvswhile">For vs While loops</a></li>
+                <li><a href="#functions">Functions</a></li>
+            </ul>
+
+            <!-- Right Side -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="surgery">Surgeries</a></li>
+                <li><a href="comparison-simple">Simple</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h1 class="text-center">Python vs Java</h1>
+    <p class="bg-danger text-center"><b>The first conceptual demo of code for each section is done in Python (unless specified).</b></p>
+    <hr />
+    <h1 class="text-center">General comparison of techniques</h1>
+    <p class="text-center bg-warning"><code>System.out.println()</code> is essentially just a <code>print</code> statement in Python.</p>
+    <div class="well">
+        <div id="layout">
+            <h2>Layout</h2>
+            <p>All statements in Python are separated by <i>new lines</i> whereas with Java (and most other languages) they are done with a semi colon (<code>;</code>).</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <p>The layout of Python code is important as it is indentation based. Python determines what
+                       is
+                       within a
+                       if statement by reading the line with, for example, <code>if</code> on it, then going to the next
+                        <i>indented</i> line. It determines the end of the <code>if</code> block when it comes across
+                       code
+                        <i>less</i> indented than the previous line.</p>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">myNumber = 5
+if myNumber > 10:
+    print("Greater than 10")
+else:
+    print("Less than 10")</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <p>Java (and most other programming languages) work instead with braces (<code>{</code> and
+                        <code>}</code>)
+                       to specify what is within a block of code, indentation does not matter to the program, however it
+                       is
+                       still
+                       good practice to indent as you would in Python for readability.</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int myNumber = 5;
+if (myNumber < 10) {
+    System.out.println("Greater than 10");
+} else {
+    System.out.println("Less than 10");
+}</pre>
+                    <p>The following however would also work perfectly in Java, but is less readable (and you <b>may</b> lose
+                       marks on
+                       code for poor/inconsistent layout):</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int myNumber = 5;
+if (myNumber < 10) {System.out.println("Greater than 10")   ;
+} else { System.out.println("Less than 10");}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="access">
+            <h2>Access Modifiers</h2>
+            <p>Python doesn't really have this fully implemented, and I don't think you met it last year - so not going to compare Python here.<br /><br />
+            In Java there are 3 access modifiers, and not specifing one (so 4 ways to define the access of a variable)</p>
+            <div class="row row-eq-height">
+                <div class="col-md-12">
+                    <h2><code>public</code></h2>
+                    The public keyword means the variable will be accessible from anywhere else in the program.
+                    <h2><code>private</code></h2>
+                    The private keyword means the variable will only beaccessible from the current class.
+                    <h2><code>protected</code></h2>
+                    The protected keyword means the variable will be accessible from the current package and anything within it (including subclasses - i.e classes that extend the class the variable is in - more later).
+                    <h2>Specifiying no access modifier</h2>
+                    Failing to specify a modifier means the variable can be access from the current class and package,
+                    <h2>As a table:</h2>
+                    <i>As the table goes down, less and less places can access the variable</i>
+                    <table class="table">
+                        <tr>
+                            <th>Access Modifier</th>
+                            <th>Same Class</th>
+                            <th>Same Package</th>
+                            <th>Subclass</th>
+                            <th>Other Packages</th>
+                        </tr>
+                        <tr>
+                            <td>Public</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                        </tr>
+                        <tr>
+                            <td>Protected</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>N</td>
+                        </tr>
+                        <tr>
+                            <td>None</td>
+                            <td>Y</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>N</td>
+                        </tr>
+                        <tr>
+                            <td>Private</td>
+                            <td>Y</td>
+                            <td>N</td>
+                            <td>N</td>
+                            <td>N</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="variables">
+            <h2>Variables</h2>
+            <p>The data type of the variable in python is determined by the interpreter, so you do not specify a type.
+               In Java you have to specify a type. The common types you’ll be using are:</p>
+            <ul>
+                <li>int</li>
+                <li>float</li>
+                <li>double - more accurate than float</li>
+                <li>String</li>
+            </ul>
+            <div class="row row-eq-height">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    The way python declares variables is as so:
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">myInt = 5
+myFloat = 5.0
+myString = "Hello"</pre>
+                    Python doesn't really care and will just work it out based on context, and sometimes will convert
+                    between
+                    data types depending on what you try to do with it. This is allowed as Python can dynamically
+                    (meaning
+                    at
+                    run time) allocate memory at will, where as with Java you have to do this yourself.<br /><br />
+                    <p>Generally:</p>
+                    <code>&lt;var_name&gt; = &lt;value&gt;</code>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    Java requires you to specify a type for the variable:
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int myInt = 5;
+float myFloat = 5.0;
+String myString = "Hello";</pre>
+                    This is so that the compiler knows how much memory to set aside for the variable.<br /><br /><br />
+                    <p>Generally:</p>
+                    <code>[access_modifier] &lt;data_type&gt; &lt;var_name&gt; = &lt;value&gt;;</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="constants">
+            <h2>Constants</h2>
+            <p>Python doesn't support constants. A constant is a value in memory that cannot be changed.<br /><br />Java doesn't directly support constants via a single keyword, however, the effect of a constant can be achieved as follows:</p>
+            <div class="row row-eq-height">
+                <div class="col-md-12">
+                    <h2><code>static final</code> keywords</h2>
+                    To tell the compiler you don't want the variable to change, you put <code>static final</code> before the data type of the constant:
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">private static final int myInt = 5;
+private static final float myFloat = 5.0;
+private static final String myString = "Hello";</pre>
+                    This prevents you from changing the values during run time.<br /><br />
+                    <code>final</code> means that the variable declaration is final... i.e it can't be changed. Static is explained <a href="comparison.html#static">here</a>.
+                    <p>Generally:</p>
+                    <code>&lt;access_modifier&gt; static final &lt;data_type&gt; &lt;const_name&gt; = &lt;value&gt;;</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="objects">
+            <h2>Objects</h2>
+            <p>Python has these, but not sure if you covered them - so not going to compare Python here.<br /><br />
+            Everything in Java has to be a class. A class is a 'blueprint' of what ever you are modelling with the class.<br />
+            For example, you may have a class called Dog. When you create an instance of that class, you then have an object. So, a object is an instance of a class.<br /><br />
+            A class may have have properties about what you're modelling (i.e variables), as well as methods (functions) to perform tasks using these properties.<br /><br />
+            Typically properties within a class (something referred to as 'class members') are declared as <code>private</code>, and 'getter/setter' methods are used to retrieve and alter their values.
+            This is so that an external object or method doesn't try to directly edit the variable, as the object will not be able to make sure the input is valid (where as a setter method can perform checks).</p>
+            <div class="row row-eq-height">
+                <div class="col-md-12">
+                    <h2>A 'Dog' Class</h2>
+                    Here is a simple dog class, which we will be the example for the rest of this section for explanations:
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">public class Dog {
+    private String name;
+    private int age;
+    
+    // Constructor, explained later in this section
+    public Dog(String dogName, int dogAge) {
+        name = dogName;
+        age = dogAge;
+    }
+    
+    // Getter, returns the name of the current dog object
+    public String getName() {
+        return name;
+    }
+    
+    // Setter, sets the name of the current dog object
+    public void setName(String newName) {
+        name = newName;
+    }
+    
+    // Getter, returns age of the current dog object
+    public int getAge() {
+        return age;
+    }
+    
+    // Setter, sets the age of the current dog object
+    public void setAge(int newAge) {
+        age = newAge;
+    }
+}
+                    </pre>
+                    <hr />
+                    <h2>Constructor</h2>
+                    The constructor is a method (function) which is automatically called when an object is instantiated (created, explained at the end of this section).<br />
+                    The constructor can take parameters in order to set member variables (explained next), or to determine the value of member variables. The constructor can also do other tasks such as record how many 'Dog' (in our example) objects have been created.<br /><br />
+                    Multiple constructors are allowed so long as have different parameters (types, amount or order of data types).
+                    <hr />
+                    <h2>Member Variables</h2>
+                    These are simply variable which relate and belong to a object. These are typically private as to prevent outside places modifiying their value.
+                    <hr />
+                    <h2>Setters/Getters</h2>
+                    Setters and getters are a way for us to retrieve and manipulate our member variables.
+                    <hr />
+                    <h2>Methods</h2>
+                    Methods are fuctions that belong to a class, as mentioned previously, Java forces you to use classes for everything, so all 'functions' are actually methods.
+                    <hr />
+                    <h1>Creating an Instance of a Object</h1>
+                    We can create an instance of a object from elsewhere in our code as follows:
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">Dog myDog = new Dog("Dot", 3);</pre>
+                    This is essentially a variable, where the 'data type' is the name of our class, we give this the name 'myDog', this is then set to a <code>new</code> Dog. This means that we are creating a new instance of our class (now called a object because we have used the blue print so to speak). In the brackets, we pass the parameters that our contructor requires.<br /><br />
+                    Different instances of a class have different values for their member variables (name and age in our example).
+                    <hr />
+                    <h2>Access Object Methods</h2>
+                    To access methods within our object we use dot notation, as shown:
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">System.out.println(myDog.getName());</pre>
+                    This line would print out the dog name onto our screen (as getName() returns a String, the name of the dog).
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="static">
+            <h2>Static</h2>
+            <p>References the 'Dog' class example from the previous topic (<a href="comparison.html#objects">here</a>).<br /><br />
+            The <code>static</code> keyword allows us to access variable within a class, without creating an object of that class. This is why the <code>main</code> method is a static method, as Java needs a way to call the method, as no objects have been created yet.<br /><br />
+            <code>static</code> also allows us to have variables shared across all instances of a particular class.</p>
+            <div class="row row-eq-height">
+                <div class="col-md-12">
+                    <h2>Adding a <code>static</code> member variable to our previous 'Dog' class</h2>
+                    New lines have been marked with a comment saying 'NEW':
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">public class Dog {
+    public static int numberOfDogs = 0; // NEW
+    
+    private String name;
+    private int age;
+    
+    // Constructor, explained later in this section
+    public Dog(String dogName, int dogAge) {
+        name = dogName;
+        age = dogAge;
+        
+        // Increment the numberOfDogs variable
+        numberOfDogs++; // NEW
+    }
+    
+    // Setts and Getters here...
+}
+                    </pre>
+                    All dog objects will have access to the <b>same</b> variable, i.e they all access the <b>exact same</b> piece of memory for that variable.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="if">
+            <h2>If Statements</h2>
+            Concept of if statements is the same.
+            <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">if &lt;condition&gt;:
+    // do this
+else if &lt;another_condition&gt;:
+    // do this instead
+else:
+    // do this if others all false</pre>
+            <p>The below examples are from the layout section so are already explained, but here again:</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <p>Python uses indentation, brackets around condition are optional.</p><br />
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">myNumber = 5
+if myNumber > 10:
+    print("Greater than 10")
+else:
+    print("Less than 10")</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <p>Java uses <code>{</code> and <code>}</code> to contain the blocks of code, i.e the body of the
+                       if
+                       statement. Brackets around the condition are <b>compulsory</b>.</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int myNumber = 5;
+if (myNumber < 10) {
+    System.out.println("Greater than 10");
+} else {
+    System.out.println("Less than 10");
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="while">
+            <h2>While loops</h2>
+            Concept of while loops is the same.
+            <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">while &lt;condition&gt;
+    // do this
+    // can break out of while loop using 'break' (for both Python and Java)
+</pre>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <p>Python uses indentation, brackets around condition are optional.</p><br />
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">counter = 0
+while counter < 5:
+    print(counter)
+    counter += 1</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <p>Java uses <code>{</code> and <code>}</code> to contain the blocks of code, i.e the body of the
+                       while loop. Brackets around the condition are <b>compulsory</b>.</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int counter = 0;
+while (counter < 5) {
+    System.out.println(counter);
+    counter++;
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+        <div id="for">
+            <h2>For loops</h2>
+            Concept of for loops is the same, although they are defined different.
+            <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">for &lt;temp_variable&gt; in range(&lt;start&gt;, &lt;end&gt;, &lt;step&gt;):
+    // do this
+</pre>
+            <p>We go from the <i>start</i> variable up to (but not including) the <i>end</i> variable with an increment of <i>step</i> so <code>range(1, 11, 2)</code> gives an output of <code>1, 3, 5, 7, 9</code> (notice no 11). Both the example below use this start, end and step and produce the same result.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <p>Python uses indentation, brackets around for condition (the <code>i in range(1, 11, 2)</code> part) are optional.</p><br />
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">for i in range(1, 11, 2):
+    print(i)</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <p>Java uses <code>{</code> and <code>}</code> to contain the blocks of code, i.e the body of the
+                       for loop. Brackets around the condition are <b>compulsory</b>.</p>
+                    <p>Java also has start, end and step, just no range function. The header for a for loop is split into the same for parts, specifing a starting a value, some value to cause it to stop and how to change after each iteration, each separated by a <code>;</code>. General syntax is:</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">for (&lt;datatype&gt; &lt;var&gt; = &lt;start&gt;; &lt;condition&gt;; &lt;step&gt;)</pre>
+                    <p><i>Note: &lt;condition&gt; and &lt;step&gt; are given in terms of &lt;var&gt;, see below example.</i></p>
+                    <p>You need to declare the variable <code>i</code> (call it anything) in the first section, in the second section is the condition (i.e what causes the end) and finally the step or how to change after each iteration.</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">for (int i = 1; i < 11; i += 2) {
+    System.out.println(i);
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="well">
+        <div id="forvswhile">
+            <h2>For vs While loops (Comparison)</h2>
+            The same thing can be accomplished with both a for loop and a while loop. A for loop is typically used when you know the range you want to iterate through whereas a while loop you use when you don't know or can't find out via something like user input. The comparison is done using Java code.
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>While loops</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">int counter = 0;
+while (counter < 5) {
+    System.out.println(counter);
+    counter++;
+}</pre>
+                <p>A separate counter variable has to be declared <b>and</b> initialised outside of the loop, you must remember to increment it at the end of the while loop.</p>
+                </div>
+                <div class="col-md-6">
+                    <h2>For loops</h2>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+}</pre>
+                    <p>The counter variable initialisation, condition and incrementation code is all on one line and looks tidier.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="well">
+        <div id="functions">
+            <h2>Functions/Methods</h2>
+            Concept of functions is the same, although they are defined slightly different.
+            <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">def &lt;function_name&gt;(&lt;any_arguments_comma_separated&gt;) :
+    // do this
+    // maybe return &lt;value&gt; (not neccesssary - function may just 'do' something i.e print something)
+</pre>
+            <br /><br />A method is a function that belongs to a class, so in Java which forces you to have a class for everything, all 'functions' are actually methods.
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Python</h2>
+                    <p>Python uses indentation. Python knows you want to create a function as you typed <code>def</code> (define), the next bit is the name of the function, followed by any arguments the function may take in brackets, separated by commas. The function body is then indented. If the function returns something, then the return will give the result back to the caller.</p>
+                    <p>Example of function that has return:</p>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">def add(num1, num2):
+    result = num1 + num2
+    return result</pre>
+                    <p>Example of function that has return:</p>
+                    <pre><img src="assets/img/python.png" alt="Python" class="pull-right" width="25">def sayName(name):
+    print(name)</pre>
+                </div>
+                <div class="col-md-6">
+                    <h2>Java</h2>
+                    <p>Java uses <code>{</code> and <code>}</code> to contain the blocks of code, i.e the body of the
+                       function. Brackets around the condition are <b>compulsory</b>. Functions in Java require a type, this is the kind of data that the function will return, this type is the same as the one listed in the <a href="#variables" title="Variables">variables</a> section, or <code>void</code> for a function which <b>does not</b> return anything (i.e a function that does a task like print something). General syntax:</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">&lt;access_modifier&gt; &lt;data_type&gt; &lt;funct_name&gt;(&lt;data_type&gt; &lt;name_within_funct&gt;, [more]) {
+    // do this
+    // maybe return &lt;value&gt;;
+}</pre>
+                    <p>Example of function that has return:</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">private float add(float num1, float num2) {
+    float result = num1 + num2;
+    return result;
+}</pre>
+                    <p>Example of function that no return:</p>
+                    <pre><img src="assets/img/java.png" alt="Java" class="pull-right" width="25">private void sayName(String name) {
+    System.out.println(name);
+}</pre>
+                </div>
+            </div>
+			<a href="" id="click-me">click me</a>
+				<script>
+$('#click-me').click(function (event) {
+  event.preventDefault();
+  $('#go-to-top').scrollView();
+});
+	</script>
+        </div>
+    </div>
+</div>
+</body>
+</html>

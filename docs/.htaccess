@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule .* $0.php [last,qsappend]
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule .* $0.html [last,qsappend]
