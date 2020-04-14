@@ -1,5 +1,5 @@
-# Computer-Server
-This was an example to show how two programs could communicate via UDP. Two projects in here.
+# Network Manager
+This was a session in which he showed how project could handle recording information about Computers in a list.
 
 # Some diagrams that explain the coursework 🤷‍♂️
 Found these too.
